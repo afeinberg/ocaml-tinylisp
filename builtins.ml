@@ -24,8 +24,25 @@ let fn_cons args _ =
       | _ -> lst
   in
     loop (car (cdr args))
-      
-      
+
+let fn_setcar args _ =
+  let first = car args in
+  let second = car (cdr args) in
+    (match first with
+         Cons (c) ->
+           c.car <- second
+       | _ -> invalid_arg "First argument to setcar must be a Cons") ;
+    tee
+
+let fn_setcdr args _ =
+  let first = car args in
+  let second = car (cdr args) in
+    (match first with
+        Cons (c) ->
+          c.cdr <- second
+       | _ -> invalid_arg "First argument to setcdr must be a Cons") ;
+    tee
+
 let fn_equal args _ =
   let first = car args in
   let second = car (cdr args) in

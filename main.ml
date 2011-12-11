@@ -18,7 +18,9 @@ let init_env () =
                "ATOM", fn_atom ;
                "COND", fn_cond ;
                "LAMBDA", fn_lambda ;
-               "LABEL", fn_label ]
+               "LABEL", fn_label ;
+               "SETCAR", fn_setcar ;
+               "SETCDR", fn_setcdr ]
   in
     List.iter (fun (name, sym) ->
                  Symtab.add env name (Func sym)) syms;
