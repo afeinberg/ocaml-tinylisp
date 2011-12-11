@@ -6,22 +6,22 @@ let lisp_read inp =
   let lexbuf = Lexing.from_channel inp in
     Parser.main Lexer.token lexbuf
 
-let make_cell n fn =
-  (cons (Atom n) (cons (Func fn) Null))
+
     
 let init_env () =
-  let env = cons (make_cell "QUOTE" fn_quote) Null in
-  let cells =
-    [ make_cell "CAR" fn_car ;
-      make_cell "CDR" fn_cdr ;
-      make_cell "CONS" fn_cons ;
-      make_cell "EQUAL" fn_equal ;
-      make_cell "ATOM" fn_atom ;
-      make_cell "COND" fn_cond ;
-      make_cell "LAMBDA" fn_lambda ;
-      make_cell "LABEL" fn_label ]
+  let env = Symtab.create 32 in
+  let syms = [ "QUOTE", fn_quote ;
+               "CAR", fn_car ;
+               "CDR", fn_cdr ;
+               "CONS", fn_cons ;
+               "EQUAL", fn_equal ;
+               "ATOM", fn_atom ;
+               "COND", fn_cond ;
+               "LAMBDA", fn_lambda ;
+               "LABEL", fn_label ]
   in
-    List.iter (append env) cells ;
+    List.iter (fun (name, sym) ->
+                 Symtab.add env name (Func sym)) syms;
     env
       
 let _ =

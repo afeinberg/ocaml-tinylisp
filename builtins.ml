@@ -69,7 +69,7 @@ and eval sexp env =
                  loop (cdr sexp) ;
                  eval_fn acc env)
     | _ ->
-        let v = lookup (name sexp) env in
+        let v = Symtab.lookup env (name sexp) in
           match v with
               Null -> sexp
             | _ -> v                          
@@ -107,9 +107,8 @@ let fn_cond args env =
     loop args
 
 let fn_label args env =
-  append env
-    (cons (Atom (name (car args)))
-       (cons (car (cdr args)) Null)) ;
+  Symtab.add env (name (car args))
+    (car (cdr args)) ;
   tee
       
 let rec lisp_print sexp =

@@ -5,7 +5,7 @@ INCLUDES=
 OCAMLFLAGS=$(INCLUDES) -g
 OCAMLOPTFLAGS=$(INCLUDES)
 
-MAIN_OBJS=sexp.cmo parser.cmo lexer.cmo environment.cmo builtins.cmo main.cmo
+MAIN_OBJS=sexp.cmo parser.cmo lexer.cmo symtab.cmo environment.cmo builtins.cmo main.cmo
 
 tiny_lisp: .depend $(MAIN_OBJS)
 	$(OCAMLC) -o tiny_lisp $(OCAMLFLAGS) $(MAIN_OBJS)

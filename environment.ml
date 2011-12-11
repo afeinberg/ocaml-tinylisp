@@ -12,23 +12,6 @@ let append lst o =
   in
     loop lst
       
-let lookup n env =
-  let rec loop tmp =
-    match tmp with
-        Cons (_) ->
-          let item = car tmp in
-          let nm = car item in
-          let v = car (cdr item) in
-
-            if (name nm) = n then
-              v
-            else
-              loop (cdr tmp)
-
-      | _ -> Null
-  in
-    loop env
-      
 let rec replace_atom sexp rep =
   match sexp with
       Cons (_) ->
