@@ -1,6 +1,4 @@
-Quick and dirty implementation of JMC's Lisp:
-
-http://www.paulgraham.com/rootsoflisp.html
+Quick and dirty implementation of John McCarthy's original Lisp < http://www.paulgraham.com/rootsoflisp.html >
 
 Based on < http://nakkaya.com/2010/08/24/a-micro-manual-for-lisp-implemented-in-c/ >
 
