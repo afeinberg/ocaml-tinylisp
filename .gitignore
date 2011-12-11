@@ -1,0 +1,7 @@
+tiny_lisp
+*~
+*.cm[iox]
+parser.ml
+parser.mli
+lexer.ml
+.depend
