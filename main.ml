@@ -5,8 +5,6 @@ open Sexp
 let lisp_read inp =
   let lexbuf = Lexing.from_channel inp in
     Parser.main Lexer.token lexbuf
-
-
     
 let init_env () =
   let env = Symtab.create 32 in
@@ -31,12 +29,14 @@ let _ =
   let chin = stdin 
   in
     while true do
-      (try
-         Printf.printf "> " ;
-         lisp_print (eval (lisp_read chin) env) 
-       with
-           Parsing.Parse_error -> Printf.printf "Parser error" 
-         | Lexer.Eof -> exit 0);
-      Printf.printf "\n"            
+      try
+        print_string "> " ;
+        flush stdout ;
+        let sexp_eval = eval (lisp_read chin) env in
+          lisp_print sexp_eval ;
+          print_newline () ;
+      with
+          Parsing.Parse_error -> print_endline "Parse error"
+        | Lexer.Eof -> exit 0
     done
       

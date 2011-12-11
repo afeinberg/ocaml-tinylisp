@@ -133,24 +133,24 @@ let rec lisp_print sexp =
       Null -> ()
     | Cons (_) ->
         begin
-          Printf.printf "(" ;
+          print_string "(" ;
           lisp_print (car sexp) ;
           let rec loop s =
             match s with
                 Cons (_) ->
-                  Printf.printf " " ;
+                  print_string " " ;
                   lisp_print (car s) ;
                   loop (cdr s)
               | _ -> ()
           in
             loop (cdr sexp) ;
-            Printf.printf ")" ;
+            print_string ")" ;
         end
     | Atom (n) ->
-        Printf.printf "%s" n
+        print_string n
     | Lambda (largs, lsexp) ->
-        Printf.printf "#" ;
+        print_string "#" ;
         lisp_print largs ;
         lisp_print lsexp
     | _ ->
-        Printf.printf "Error."                                
+        print_string "Error."
