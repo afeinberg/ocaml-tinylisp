@@ -1,0 +1,8 @@
+builtins.cmo: sexp.cmo environment.cmo
+builtins.cmx: sexp.cmx environment.cmx
+environment.cmo: sexp.cmo
+environment.cmx: sexp.cmx
+main.cmo: builtins.cmo
+main.cmx: builtins.cmx
+sexp.cmo:
+sexp.cmx:
